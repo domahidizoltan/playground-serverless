@@ -1,0 +1,12 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  cron-function:
+    lang: kotlin
+    handler: ./cron-function
+    image: localhost:5000/cron-function:latest
+    environment:
+      NATS_HOST: nats.openfaas
+      NATS_TOPIC: nats-test

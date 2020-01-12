@@ -1,0 +1,18 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  async-function:
+    lang: go
+    handler: ./async-function
+    image: localhost:5000/async-function:latest
+    environment:
+        NATS_HOST: nats.openfaas
+        NATS_TOPIC: nats-test
+#    labels:
+#        com.openfaas.scale.min: 0
+#        com.openfaas.scale.zero: true
+#        faasIdler.inactivityDuration: 1m
+    annotations:
+        topic: "nats-test"

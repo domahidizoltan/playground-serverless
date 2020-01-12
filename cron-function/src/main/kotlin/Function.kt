@@ -53,7 +53,7 @@ class CamelConfig {
                 .split(body().tokenize(" "))
                     .process { exchange -> exchange.`in`.body = "${exchange.`in`.body} [${Instant.now()}]" }
                     .log("sending ${body()}")
-                    .to("nats://${config.host}:${config.port}?topic=RAW(${config.topic})")
+                    .to("nats://${config.host}:${config.port}?topic=${config.topic}")
                 .end()
     }
 
